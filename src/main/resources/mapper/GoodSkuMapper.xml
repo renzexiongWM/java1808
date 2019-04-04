@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.mapper.GoodSkuMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.bean.GoodSku">
+    <id column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="sku_cost" jdbcType="VARCHAR" property="skuCost" />
+    <result column="sku_price" jdbcType="VARCHAR" property="skuPrice" />
+    <result column="sku_pmoney" jdbcType="VARCHAR" property="skuPmoney" />
+    <result column="good_id" jdbcType="VARCHAR" property="goodId" />
+    <result column="order_no" jdbcType="INTEGER" property="orderNo" />
+    <result column="service_money" jdbcType="VARCHAR" property="serviceMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sku_id, sku_name, sku_cost, sku_price, sku_pmoney, good_id, order_no, service_money
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wxb_good_sku
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wxb_good_sku
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.bean.GoodSku">
+    insert into wxb_good_sku (sku_id, sku_name, sku_cost, 
+      sku_price, sku_pmoney, good_id, 
+      order_no, service_money)
+    values (#{skuId,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, #{skuCost,jdbcType=VARCHAR}, 
+      #{skuPrice,jdbcType=VARCHAR}, #{skuPmoney,jdbcType=VARCHAR}, #{goodId,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=INTEGER}, #{serviceMoney,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.bean.GoodSku">
+    insert into wxb_good_sku
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="skuCost != null">
+        sku_cost,
+      </if>
+      <if test="skuPrice != null">
+        sku_price,
+      </if>
+      <if test="skuPmoney != null">
+        sku_pmoney,
+      </if>
+      <if test="goodId != null">
+        good_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="serviceMoney != null">
+        service_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuCost != null">
+        #{skuCost,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPrice != null">
+        #{skuPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPmoney != null">
+        #{skuPmoney,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        #{goodId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="serviceMoney != null">
+        #{serviceMoney,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.bean.GoodSku">
+    update wxb_good_sku
+    <set>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuCost != null">
+        sku_cost = #{skuCost,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPrice != null">
+        sku_price = #{skuPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="skuPmoney != null">
+        sku_pmoney = #{skuPmoney,jdbcType=VARCHAR},
+      </if>
+      <if test="goodId != null">
+        good_id = #{goodId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="serviceMoney != null">
+        service_money = #{serviceMoney,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.bean.GoodSku">
+    update wxb_good_sku
+    set sku_name = #{skuName,jdbcType=VARCHAR},
+      sku_cost = #{skuCost,jdbcType=VARCHAR},
+      sku_price = #{skuPrice,jdbcType=VARCHAR},
+      sku_pmoney = #{skuPmoney,jdbcType=VARCHAR},
+      good_id = #{goodId,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      service_money = #{serviceMoney,jdbcType=VARCHAR}
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </update>
+</mapper>
